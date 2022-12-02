@@ -1,0 +1,11 @@
+[package]
+name = "hash_proof_of_work"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = 3
+
+[dependencies]
+rand = "0.8.5"
+sha3 = "0.10.6"
