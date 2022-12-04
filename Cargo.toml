@@ -8,4 +8,4 @@ opt-level = 3
 
 [dependencies]
 rand = "0.8.5"
-sha3 = "0.10.6"
+sha2 = "0.10.6"

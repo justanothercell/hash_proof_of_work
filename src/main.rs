@@ -1,12 +1,12 @@
 use std::thread;
 use std::time::SystemTime;
 use rand::Rng;
-use sha3::{Digest, Sha3_256};
+use sha2::{Sha256, Digest};
 
 fn main() {
     let start = SystemTime::now();
     const INPUT_START: [u8; 8] = [0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF];
-    const HASH_ENDING: [u8; 4] = [0xFF, 0xFF, 0xFF, 0xFF];
+    const HASH_ENDING: [u8; 3] = [0xF0, 0x1B, 0xAA];
 
     for i in 0..64 {
         let _ = thread::spawn(move || {
@@ -19,7 +19,7 @@ fn main() {
                     std::ptr::copy_nonoverlapping(random_bytes.as_ptr(), dest.add(8), 24);
                     result.assume_init()
                 };
-                let mut hasher = Sha3_256::new();
+                let mut hasher = Sha256::new();
                 hasher.update(input);
                 let result = hasher.finalize();
                 if result.ends_with(&HASH_ENDING) {
